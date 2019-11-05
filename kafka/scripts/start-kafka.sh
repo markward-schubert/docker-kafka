@@ -56,7 +56,7 @@ fi
 
 for VAR in `env`
 do
-  if [[ $VAR =~ ^KAFKA_ && ! $VAR =~ ^KAFKA_HOME ]]; then
+  if [[ $VAR =~ ^KAFKA_ && ! $VAR =~ ^KAFKA_HOME && ! $VAR =~ ^KAFKA_VERSION ]]; then
     kafka_name=`echo "$VAR" | sed -r "s/KAFKA_(.*)=.*/\1/g" | tr '[:upper:]' '[:lower:]' | tr _ .`
     env_var=`echo "$VAR" | sed -r "s/(.*)=.*/\1/g"`
     if egrep -q "(^|^#)$kafka_name=" $KAFKA_HOME/config/server.properties; then
